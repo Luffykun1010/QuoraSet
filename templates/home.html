@@ -1,0 +1,79 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<div class="row" >
+    <div class="col-4"></div>
+    <div class="col-4" style="margin-top: 20px;">
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10 col-md-6 post_container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-9 input_text">
+                    <input type="text" class="post_input" name="posts"
+                        placeholder="  What do you wanna ask or share?  (Maximum 1000 words)">
+                </div>
+                <div class="col-2">
+                    <button class="post_button" type="submit">&nbsp;&nbsp;Ask&nbsp;&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% for post in posts %}
+<div class="row post_table">
+    <div class="col-1"></div>
+    <div class="col-10 col-md-6 post_container">
+        <div class="row" style="margin-top: 10px;margin-bottom: 10px;">
+            <div class="col-12">
+                <p class="user_name">{{post.user.username}}</p>
+                <p class="created">{{post.created_at}}</p>
+                <p class="post">{{post.post}}</p>
+                <form action="comments" method="POST">
+                    {% csrf_token %}
+                    <div class="row" style="margin-bottom: -20px;margin-top: -10px;">
+                        <div class="col-9 input_text">
+                            <input type="hidden" class="post_input" name="commentpost"
+                                placeholder=" Comment about the post " value="{{post.id}}">
+                            <input type="hidden" class="post_input" name="commentuser"
+                                placeholder=" Comment about the post " value="{{user.id}}">
+                            <input type="text" class="post_input" name="comments"
+                                placeholder=" Comment about the post ">
+                        </div>
+                        <div class="col-2">
+                            <button class="post_button" type="submit">&nbsp;&nbsp;Comment&nbsp;&nbsp;</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row comment_table">
+    <div class="col-1"></div>
+    <div class="col-10 col-md-6 post_container">
+        <h5 style="margin-top: 25px;">Comments:</h5>
+        <div class="row" style="margin-top: 10px;margin-bottom: 10px;height: 140px;overflow: auto;">
+            {% for comment in comments %}
+            {% if comment.post.post == post.post %}
+            <div class="col-10">
+                <hr>
+                <h6 style="margin-top: 10px;">{{comment.user.username}}: </h6>
+                <p>{{comment.comments}}</p>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-dark like-button" style="margin-top: 40px;"
+                    data-comment-id="{{ comment.id }}">Like</button>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

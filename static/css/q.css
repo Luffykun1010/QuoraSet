@@ -1,0 +1,48 @@
+.row{
+    width: 100%;
+}
+.post_container{
+    border: 2px solid rgb(182, 176, 176);
+    margin-top: 5vh;
+}
+.input_text{
+    border-radius: 10px;
+    margin:30px 0 30px 0;
+    border: 1px solid rgb(107, 107, 236);
+    margin-left: 1vw;
+}
+.post_input{
+    border: none;
+    width: 100%;
+}
+.post_button{
+    border-radius: 20px;
+    margin:30px 0 30px 0;
+    border: 1px solid rgb(107, 107, 236);
+    background-color: white;
+}
+.post_button:hover{
+    background-color: blue;
+    color: white;
+}
+.user_name{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: medium;
+    font-weight: 550;
+    color: rgb(66, 46, 46);
+}
+.created{
+    margin-top: -15px;
+    font-size: small;
+}
+.post{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+}
+.post_table{
+    margin-top: -20px;
+}
+.comment_table{
+    margin-top: -30px;
+    margin-bottom: 30px;
+}
